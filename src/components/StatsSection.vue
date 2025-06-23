@@ -55,17 +55,17 @@ onMounted(() => {
 <style scoped>
 .stats {
   display: flex;
-  justify-content: center; /* Centered instead of spaced apart */
+  justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 5rem; /* Tighter gap between items */
+  gap: 5rem;
   padding: 2rem 1rem;
   background-color: #f5f5f5;
   text-align: center;
 }
 
 .stat {
-  flex: 0 1 150px; /* Small fixed size with responsive wrap */
+  flex: 0 1 150px;
   max-width: 160px;
   padding: 0.5rem 0.75rem;
   transition: transform 0.3s;

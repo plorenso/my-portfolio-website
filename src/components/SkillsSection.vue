@@ -1,16 +1,7 @@
 <template>
   <section class="skills" id="skills">
     <h4>EXPERTISE</h4>
-    <!-- <h1>
-      Why <span class="highlight">hire me</span> for your <span class="highlight">Company?</span>
-    </h1> -->
     <h1>My <span class="highlight">Tech Stacks</span></h1>
-    <!-- <p class="description">
-      I am a hardworking IT student with an aptitude for developing solutions in a limited amount of
-      time and an eagerness to use my programming skills or designing skills for the growth of the
-      organization and myself.
-    </p> -->
-
     <div class="skills-cards">
       <div class="card" v-for="(skill, index) in skillCategories" :key="index">
         <h3>{{ skill.title }}</h3>

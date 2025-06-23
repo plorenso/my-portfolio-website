@@ -63,7 +63,6 @@ const downloadCV = () => {
 </script>
 
 <style scoped>
-/* Header */
 .header {
   width: 100%;
   background-color: #ffffff;
@@ -72,10 +71,9 @@ const downloadCV = () => {
   z-index: 1000;
 }
 
-/* Flex Container */
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin-left: 8rem;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -89,7 +87,6 @@ const downloadCV = () => {
   gap: 1rem;
 }
 
-/* Hamburger Button */
 .hamburger {
   display: none;
   font-size: 2rem;
@@ -98,15 +95,13 @@ const downloadCV = () => {
   cursor: pointer;
 }
 
-/* Logo */
 .logo h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #4caf50;
-  font-weight: bold;
+  font-weight: 700;
 }
 
-/* Desktop Nav */
 .desktop-nav {
   display: flex;
   align-items: center;
@@ -134,6 +129,7 @@ const downloadCV = () => {
 
 .download-cv button {
   padding: 0.5rem 1rem;
+  margin-right: 1.5rem;
   background-color: #4caf50;
   border: none;
   color: white;

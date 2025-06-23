@@ -27,7 +27,7 @@
 .hero {
   width: 100%;
   padding: 4rem 2rem;
-  background-color: #f8f9fa;
+  background-color: #fdfdfd;
 }
 
 .hero-content {

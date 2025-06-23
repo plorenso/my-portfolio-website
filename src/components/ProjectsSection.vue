@@ -3,14 +3,33 @@
     <h4>PROJECTS</h4>
     <h1>My <span class="highlight">Works</span></h1>
 
-    <div class="projects-grid">
-      <div class="project-card" v-for="(project, index) in projects" :key="index">
-        <img :src="project.image" :alt="project.title" />
-        <h3>{{ project.title }}</h3>
-        <p>{{ project.description }}</p>
-        <div class="buttons">
-          <a v-if="project.demo" :href="project.demo" target="_blank">View Demo</a>
-          <a v-if="project.code" :href="project.code" target="_blank">Source Code</a>
+    <div class="project-list">
+      <div
+        class="project-entry"
+        v-for="(project, index) in projects"
+        :key="index"
+        :class="{ reverse: index % 2 !== 0 }"
+      >
+        <div class="project-text">
+          <h3>{{ project.title }}</h3>
+          <p class="description">{{ project.description }}</p>
+
+          <div class="tags">
+            <span v-for="tag in project.tags" :key="tag" class="tag">{{ tag }}</span>
+          </div>
+
+          <div class="tech-stack">
+            <span v-for="tech in project.techStack" :key="tech" class="tech-badge">{{ tech }}</span>
+          </div>
+
+          <div class="buttons">
+            <a v-if="project.demo" :href="project.demo" target="_blank"> View Demo</a>
+            <a v-if="project.code" :href="project.code" target="_blank"> Source Code</a>
+          </div>
+        </div>
+
+        <div class="project-image">
+          <img :src="project.image" :alt="project.title" />
         </div>
       </div>
     </div>
@@ -18,16 +37,18 @@
 </template>
 
 <script setup>
-// const defaultImage = 'https://via.placeholder.com/300x200?text=Project'
+import oneGraceville from '@/assets/images/one_graceville.png'
 
 const projects = [
   {
-    title: 'One Graceville System',
+    title: 'ONE Graceville',
     description:
-      'A Barangay Information Management System with certificate requests, inventory, and admin control.',
-    image: '@/assets/images/project1.png',
+      'ONE Graceville is a web-based Barangay Information Management System designed to streamline community operations. It includes modules for announcements, resident profiling, certificate requests, inventory tracking, and role-based admin control for managing users, officials, and system data.',
+    image: oneGraceville,
     demo: '#',
     code: '#',
+    tags: ['Capstone Project', 'Information System', 'Community System'],
+    techStack: ['Vue 3', 'PrimeVue', 'Django', 'MySQL'],
   },
   {
     title: 'Portfolio Website',
@@ -36,6 +57,8 @@ const projects = [
     image: '@/assets/images/project2.png',
     demo: '#',
     code: '#',
+    tags: ['Information System', 'Community Tool'],
+    techStack: ['Vue 3', 'Django', 'MySQL', 'PrimeVue'],
   },
   {
     title: 'E-Commerce UI',
@@ -43,6 +66,8 @@ const projects = [
     image: '@/assets/images/project3.png',
     demo: '#',
     code: '#',
+    tags: ['Information System', 'Community Tool'],
+    techStack: ['Vue 3', 'Django', 'MySQL', 'PrimeVue'],
   },
 ]
 </script>
@@ -50,84 +75,138 @@ const projects = [
 <style scoped>
 .projects {
   padding: 4rem 2rem;
-  background-color: #f9f9f9;
-  text-align: center;
+  background-color: #fdfdfd;
 }
 
 .projects h4 {
-  color: #b4b2c5;
-  letter-spacing: 3px;
+  text-align: center;
+  color: #999;
+  letter-spacing: 2px;
   font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
 .projects h1 {
   font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  text-align: center;
+  color: #212529;
+  margin-bottom: 1.5rem;
 }
 
 .highlight {
+  text-align: center;
+  font-weight: 700;
   color: #4caf50;
 }
 
-.projects-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-.project-card {
-  background: white;
-  width: 300px;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+.project-list {
   display: flex;
   flex-direction: column;
+  gap: 5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.project-entry {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+.project-entry.reverse {
+  flex-direction: row-reverse;
 }
 
-.project-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
+.project-text {
+  flex: 1;
+  min-width: 280px;
+  padding: 1rem;
 }
 
-.project-card h3 {
-  margin: 1rem 0 0.5rem;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.project-card p {
-  font-size: 0.95rem;
-  color: #666;
+.project-text h3 {
+  font-size: 1.8rem;
+  color: #222;
   margin-bottom: 1rem;
-  text-align: center;
+}
+
+.project-text .description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.tags {
+  margin-bottom: 1rem;
+}
+
+.tag {
+  background-color: #e0f7fa;
+  color: #00796b;
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  margin: 0 0.4rem 0.4rem 0;
+  display: inline-block;
+}
+
+.tech-stack {
+  margin-bottom: 1.5rem;
+}
+
+.tech-badge {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  margin: 0 0.4rem 0.4rem 0;
+  display: inline-block;
 }
 
 .buttons a {
   text-decoration: none;
-  margin: 0 0.5rem;
-  color: white;
+  margin-right: 1rem;
   background-color: #4caf50;
-  padding: 0.4rem 1rem;
-  border-radius: 5px;
-  font-size: 0.9rem;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
   transition: background 0.3s ease;
+  display: inline-block;
 }
 
 .buttons a:hover {
   background-color: #388e3c;
+}
+
+.project-image {
+  flex: 1;
+  min-width: 280px;
+}
+
+.project-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .project-entry,
+  .project-entry.reverse {
+    flex-direction: column;
+  }
+
+  .project-text,
+  .project-image {
+    width: 100%;
+  }
+
+  .project-text {
+    padding: 0;
+  }
 }
 </style>
