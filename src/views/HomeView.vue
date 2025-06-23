@@ -4,6 +4,7 @@
     <HeroSection />
     <StatsSection />
     <SkillsSection />
+    <ProjectsSection />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import Header from '@/components/Header.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import StatsSection from '@/components/StatsSection.vue'
 import SkillsSection from '@/components/SkillsSection.vue'
+import ProjectsSection from '@/components/ProjectsSection.vue'
 </script>
 
 <style>
