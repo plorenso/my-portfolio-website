@@ -5,6 +5,7 @@
     <StatsSection />
     <SkillsSection />
     <ProjectsSection />
+    <AchievementsSection />
   </div>
 </template>
 
@@ -14,8 +15,7 @@ import HeroSection from '@/components/HeroSection.vue'
 import StatsSection from '@/components/StatsSection.vue'
 import SkillsSection from '@/components/SkillsSection.vue'
 import ProjectsSection from '@/components/ProjectsSection.vue'
+import AchievementsSection from '@/components/AchievementsSection.vue'
 </script>
 
-<style>
-/* You can import a global CSS or style here */
-</style>
+<style></style>

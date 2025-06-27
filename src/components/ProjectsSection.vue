@@ -7,29 +7,44 @@
       <div
         class="project-entry"
         v-for="(project, index) in projects"
-        :key="index"
+        :key="project.title"
         :class="{ reverse: index % 2 !== 0 }"
       >
         <div class="project-text">
           <h3>{{ project.title }}</h3>
           <p class="description">{{ project.description }}</p>
 
-          <div class="tags">
-            <span v-for="tag in project.tags" :key="tag" class="tag">{{ tag }}</span>
+          <div class="features">
+            <h5>Key Features:</h5>
+            <ul>
+              <li v-for="feature in project.features" :key="feature" class="feature-item">
+                {{ feature }}
+              </li>
+            </ul>
           </div>
 
           <div class="tech-stack">
+            <h5>Tech Stack:</h5>
             <span v-for="tech in project.techStack" :key="tech" class="tech-badge">{{ tech }}</span>
           </div>
 
           <div class="buttons">
-            <a v-if="project.demo" :href="project.demo" target="_blank"> View Demo</a>
-            <a v-if="project.code" :href="project.code" target="_blank"> Source Code</a>
+            <a v-if="project.demo" :href="project.demo" target="_blank" aria-label="View Demo">
+              <ExternalLink class="icon" /> View Demo
+            </a>
+            <a
+              v-if="project.code"
+              :href="project.code"
+              target="_blank"
+              aria-label="View GitHub Code"
+            >
+              <Github class="icon" /> GitHub
+            </a>
           </div>
         </div>
 
         <div class="project-image">
-          <img :src="project.image" :alt="project.title" />
+          <img :src="project.image" :alt="project.title" loading="lazy" />
         </div>
       </div>
     </div>
@@ -37,37 +52,64 @@
 </template>
 
 <script setup>
-import oneGraceville from '@/assets/images/one_graceville.png'
+import { Github, ExternalLink } from 'lucide-vue-next'
+import oneGracevilleAdmin from '@/assets/images/one_graceville_admin.png'
+import oneGracevilleUser from '@/assets/images/one_graceville_user.png'
+import portfolioWebsite from '@/assets/images/my-portfolio-website.png'
 
 const projects = [
   {
-    title: 'ONE Graceville',
+    title: 'ONE Graceville: Admin Panel',
     description:
-      'ONE Graceville is a web-based Barangay Information Management System designed to streamline community operations. It includes modules for announcements, resident profiling, certificate requests, inventory tracking, and role-based admin control for managing users, officials, and system data.',
-    image: oneGraceville,
+      'A web-based Barangay Information Management System designed to streamline community operations and improve local governance efficiency.',
+    image: oneGracevilleAdmin,
     demo: '#',
     code: '#',
-    tags: ['Capstone Project', 'Information System', 'Community System'],
+    features: [
+      'Role-Based Access Control (User, Admin, Super Admin)',
+      'Dashboard with real-time ambulance and hotline status',
+      'Publish community announcements',
+      'Resident and family record management',
+      'Automated Certificate Issuance',
+      'Inventory and official management',
+      'User and admin account control',
+    ],
+    techStack: ['Vue 3', 'PrimeVue', 'Django', 'MySQL'],
+  },
+  {
+    title: 'ONE Graceville: User Portal',
+    description:
+      'The resident-side interface of ONE Graceville that allows users to access barangay services digitally.',
+    image: oneGracevilleUser,
+    demo: '#',
+    code: '#',
+    features: [
+      'Announcements Feed',
+      'Online Document Requests',
+      'Request Transaction History',
+      'Emergency Hotline Access',
+      'Live Ambulance Status',
+      'Instant Printable Certificate Generation',
+      'Email Notifications',
+      'Resident-Only Registration',
+    ],
     techStack: ['Vue 3', 'PrimeVue', 'Django', 'MySQL'],
   },
   {
     title: 'Portfolio Website',
     description:
-      'Personal portfolio built using Vue 3 and PrimeVue to showcase skills and projects.',
-    image: '@/assets/images/project2.png',
+      'Personal portfolio built using Vue 3 and PrimeVue to showcase development skills and completed projects.',
+    image: portfolioWebsite,
     demo: '#',
     code: '#',
-    tags: ['Information System', 'Community Tool'],
-    techStack: ['Vue 3', 'Django', 'MySQL', 'PrimeVue'],
-  },
-  {
-    title: 'E-Commerce UI',
-    description: 'A frontend UI for an online store made using Bootstrap and Vue.js.',
-    image: '@/assets/images/project3.png',
-    demo: '#',
-    code: '#',
-    tags: ['Information System', 'Community Tool'],
-    techStack: ['Vue 3', 'Django', 'MySQL', 'PrimeVue'],
+    features: [
+      'Fully responsive UI design',
+      'Project and skill showcase',
+      'GitHub and social links integration',
+      'Clean and minimal layout',
+      'Built with reusable components',
+    ],
+    techStack: ['Vue 3', 'PrimeVue'],
   },
 ]
 </script>
@@ -95,7 +137,6 @@ const projects = [
 }
 
 .highlight {
-  text-align: center;
   font-weight: 700;
   color: #4caf50;
 }
@@ -139,22 +180,25 @@ const projects = [
   line-height: 1.6;
 }
 
-.tags {
+.features,
+.tech-stack {
   margin-bottom: 1rem;
 }
 
-.tag {
-  background-color: #e0f7fa;
-  color: #00796b;
-  font-size: 0.75rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  margin: 0 0.4rem 0.4rem 0;
-  display: inline-block;
+.features h5,
+.tech-stack h5 {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
-.tech-stack {
-  margin-bottom: 1.5rem;
+.feature-item {
+  font-size: 0.85rem;
+  color: #555;
+  margin-left: -1.5rem;
+  margin-bottom: 0.3rem;
+  list-style-type: disc;
 }
 
 .tech-badge {
@@ -175,12 +219,20 @@ const projects = [
   padding: 0.5rem 1.2rem;
   border-radius: 6px;
   font-size: 0.85rem;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
   display: inline-block;
 }
 
 .buttons a:hover {
   background-color: #388e3c;
+  transform: scale(1.03);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.4em;
+  vertical-align: middle;
 }
 
 .project-image {
