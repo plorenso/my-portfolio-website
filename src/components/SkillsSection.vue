@@ -47,6 +47,8 @@ import photoshopIcon from '@/assets/images/photoshop.png'
 
 import gitIcon from '@/assets/images/git.png'
 import githubIcon from '@/assets/images/github.png'
+import ghl from '@/assets/images/ghl.png'
+import wix from '@/assets/images/wix.png'
 
 const defaultIcon = 'https://via.placeholder.com/30?text=?'
 
@@ -96,10 +98,12 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Version Control',
+    title: 'Version Control & Applications',
     items: [
       { name: 'Git', img: gitIcon },
       { name: 'GitHub', img: githubIcon },
+      { name: 'Go HighLevel', img: ghl },
+      { name: 'Wix Studio', img: wix },
     ],
   },
 ]
