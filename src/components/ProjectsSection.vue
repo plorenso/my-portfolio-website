@@ -24,8 +24,8 @@
           </div>
 
           <div class="tech-stack">
-            <h5>Tech Stack:</h5>
-            <span v-for="tech in project.techStack" :key="tech" class="tech-badge">{{ tech }}</span>
+            <h5>Tags:</h5>
+            <span v-for="tech in project.tag" :key="tech" class="tech-badge">{{ tech }}</span>
           </div>
 
           <div class="buttons">
@@ -53,11 +53,92 @@
 
 <script setup>
 import { Github, ExternalLink } from 'lucide-vue-next'
-import oneGracevilleAdmin from '@/assets/images/one_graceville_admin.png'
-import oneGracevilleUser from '@/assets/images/one_graceville_user.png'
+import oneGracevilleAdmin from '@/assets/images/one-graceville-admin.png'
+import oneGracevilleUser from '@/assets/images/one-graceville-user.png'
 import portfolioWebsite from '@/assets/images/my-portfolio-website.png'
+import appleWebsite from '@/assets/images/apple-web.png'
+import angelsBurgerPOS from '@/assets/images/angels-burger-pos.png'
+import pawSome from '@/assets/images/PAWsome.png'
+import pupLearn from '@/assets/images/PUPLearn+.png'
+import pupRE from '@/assets/images/PUP-RE-website.png'
+import tourEZ from '@/assets/images/tourEZ.png'
 
 const projects = [
+  {
+    title: 'Apple Website Redesign',
+    description:
+      'Recreated a pixel-perfect clone of Apple’s official website to sharpen my front-end development and UI/UX design skills. The project emphasizes clean layouts and minimalistic design—true to Apple’s brand aesthetic.',
+    image: appleWebsite,
+    demo: '#',
+    code: '#',
+    features: ['Home Page'],
+    tag: ['Webflow', 'UI/UX Design', 'Web Design'],
+  },
+  {
+    title: 'PAWsome',
+    description:
+      'PAWsome is a user-friendly website for adopting and selling puppies. Connect with trusted breeders or find your perfect pup — all in one place.',
+    image: pawSome,
+    demo: '#',
+    code: '#',
+    features: ['Home', 'About', 'Pricing', 'Contact', 'Buy Puppy', 'Adopt Puppy'],
+    tag: ['HTML', 'CSS', 'JavaScript', 'Web Design'],
+  },
+  {
+    title: 'PUPLearn+',
+    description:
+      'PUPLearn+ is a Learning Management System (LMS) designed for the Polytechnic University of the Philippines. It features dedicated modules for faculty, students, and parents—making education more accessible, organized, and collaborative.',
+    image: pupLearn,
+    demo: '#',
+    code: '#',
+    features: [
+      'Role-Based Access Control (Faculty, Student, Parent)',
+      'Dashboard',
+      'Attendance',
+      'Exam',
+      'Question Bank',
+      'Grades',
+      'Profile',
+      'Settings',
+    ],
+    tag: ['Figma', 'UI/UX Design', 'Web Design'],
+  },
+  {
+    title: 'PUP Railway Engineering Management Accreditation Website',
+    description:
+      'PUP Railway Engineering Management Accreditation Website is a centralized platform designed to support the accreditation process of the Railway Engineering Management program at the Polytechnic University of the Philippines. It streamlines document submission, tracks evaluation progress, and provides easy access to accreditation resources for faculty, assessors, and administrators.',
+    image: pupRE,
+    demo: '#',
+    code: '#',
+    features: ['View PUP BSRE Files', 'View Flipbook Magazines', 'View Certifications'],
+    tag: ['Wix Studio', 'HTML', 'CSS', 'JavaScript', 'Web Design'],
+  },
+  {
+    title: 'Angels Burger POS Mobile Application',
+    description:
+      'Angels Burger POS is a mobile Point-of-Sale application designed to streamline ordering, inventory tracking, and sales monitoring for Angels Burger kiosks. Fast, efficient, and easy to use—built for on-the-go operations.',
+    image: angelsBurgerPOS,
+    demo: '#',
+    code: '#',
+    features: ['Order Management', 'Inventory Management', 'Real-Time Sales Tracking'],
+    tag: ['Figma', 'UI/UX Design', 'Mobile App Design'],
+  },
+  {
+    title: 'TourEZ',
+    description:
+      'TourEZ is an all-in-one mobile app that simplifies travel. Easily book hotels, schedule transportation, explore tourist spots, and get guided assistance—making every trip smooth and stress-free.',
+    image: tourEZ,
+    demo: '#',
+    code: '#',
+    features: [
+      'Hotel Booking',
+      'Transportation Scheduler',
+      'Tourist Spot Explorer',
+      ' Trip Planner',
+      'Messenger',
+    ],
+    tag: ['Figma', 'UI/UX Design', 'Mobile App Design'],
+  },
   {
     title: 'ONE Graceville: Admin Panel',
     description:
@@ -74,7 +155,7 @@ const projects = [
       'Inventory and official management',
       'User and admin account control',
     ],
-    techStack: ['Vue 3', 'PrimeVue', 'Django', 'MySQL'],
+    tag: ['Vue 3', 'PrimeVue', 'Django', 'MySQL'],
   },
   {
     title: 'ONE Graceville: User Portal',
@@ -93,23 +174,7 @@ const projects = [
       'Email Notifications',
       'Resident-Only Registration',
     ],
-    techStack: ['Vue 3', 'PrimeVue', 'Django', 'MySQL'],
-  },
-  {
-    title: 'Portfolio Website',
-    description:
-      'Personal portfolio built using Vue 3 and PrimeVue to showcase development skills and completed projects.',
-    image: portfolioWebsite,
-    demo: '#',
-    code: '#',
-    features: [
-      'Fully responsive UI design',
-      'Project and skill showcase',
-      'GitHub and social links integration',
-      'Clean and minimal layout',
-      'Built with reusable components',
-    ],
-    techStack: ['Vue 3', 'PrimeVue'],
+    tag: ['Vue 3', 'PrimeVue', 'Django', 'MySQL'],
   },
 ]
 </script>
@@ -169,6 +234,7 @@ const projects = [
 
 .project-text h3 {
   font-size: 1.8rem;
+  font-weight: 500;
   color: #222;
   margin-bottom: 1rem;
 }
@@ -236,14 +302,19 @@ const projects = [
 }
 
 .project-image {
-  flex: 1;
-  min-width: 280px;
+  aspect-ratio: 4 / 5;
+  max-width: 500px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .project-image img {
   width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 @media (max-width: 768px) {

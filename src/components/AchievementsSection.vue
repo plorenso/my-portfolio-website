@@ -32,7 +32,7 @@ import { onMounted } from 'vue'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-import { Award, FileCode2, GraduationCap, Trophy } from 'lucide-vue-next'
+import { Award, FileCode2, MonitorCog, Code, PenTool, Headset, SquareCode } from 'lucide-vue-next'
 
 onMounted(() => {
   AOS.init({ duration: 800, once: true })
@@ -40,28 +40,66 @@ onMounted(() => {
 
 const achievements = [
   {
-    icon: FileCode2,
-    title: 'Programming JAVA NC III',
-    description: 'Completed TESDA’s 40-day Java training with institutional assessment.',
-    date: '2023',
+    icon: Award,
+    title: 'Academic Excellence',
+    description: 'Consistent President Lister',
+    date: '2022-2025',
   },
   {
-    icon: GraduationCap,
-    title: 'Certified Web Developer',
-    description: 'Graduated from a full-stack web dev bootcamp at XYZ Academy.',
-    date: 'December 2023',
+    icon: FileCode2,
+    title: 'Programming JAVA NC III',
+    description:
+      'Completed 40 days Programming JAVA NC III TESDA training passed the Institutional assessment.',
+    date: 'June 2023',
+  },
+  {
+    icon: MonitorCog,
+    title: 'Computer Systems Servicing NC II Holder',
+    description:
+      'Completed 40 days Computer System Servicing TESDA training and passed the National assessment.',
+    date: 'January 2024',
+  },
+  {
+    icon: Code,
+    title: 'Full-Stack Developer Intern',
+    description:
+      'Completed 300 hours of practical training as a Full-Stack Developer Intern, contributing to real-world projects involving both frontend and backend technologies.',
+    date: 'February 2024',
+  },
+  {
+    icon: PenTool,
+    title: 'Visual Graphic Design NC III Holder',
+    description:
+      'Completed 66 days Visual Graphic Design TESDA training and passed the National assessment.',
+    date: 'December 2024',
+  },
+  {
+    icon: Headset,
+    title: 'Contact Center Service NC II',
+    description:
+      'Completed 28 days Contact Center Servicing TESDA training and passed the Institutional assessment.',
+    date: 'February 2024',
+  },
+  {
+    icon: Code,
+    title: 'System Automations and Web Developer Intern',
+    description:
+      'Completed 300 hours of practical training as a System Automations and Web Developer Intern, contributing to real-world projects using Go HighLevel (GHL) for building automations, funnels, and websites.',
+    date: 'February 2024',
   },
   {
     icon: Award,
     title: 'Capstone Project Excellence',
-    description: 'Barangay Information System awarded Best Capstone Project.',
-    date: 'May 2025',
+    description:
+      'PUP recognized the system to be part of their extension project 2026, for implementation in a partnered beneficiary community, enhancing the delivery of barangay services.',
+    date: 'July 2025',
   },
   {
-    icon: Trophy,
-    title: 'Coding Contest Champion',
-    description: 'Won 1st place in a university-wide algorithm competition.',
-    date: 'March 2024',
+    icon: SquareCode,
+    title: 'Web Developer',
+    description:
+      'Part of the team for AACCUP Accreditation of PUP College of Engineering, Railway Engineering Management Program',
+    date: 'July 2025',
   },
 ]
 </script>
@@ -77,6 +115,7 @@ const achievements = [
   font-weight: 500;
   color: #b4b2c5;
   letter-spacing: 2px;
+  margin-bottom: 0.5rem;
 }
 
 .achievements h1 {
@@ -87,6 +126,7 @@ const achievements = [
 }
 
 .highlight {
+  font-weight: 700;
   color: #4caf50;
 }
 
@@ -98,31 +138,41 @@ const achievements = [
 }
 
 .achievement-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .achievement-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0e0;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-  background: #f9f9f9;
-  border-left: 4px solid #4caf50;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-  transition: transform 0.3s ease;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .achievement-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .icon {
-  flex-shrink: 0;
+  background: #e8f5e9;
+  padding: 1rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lucide-icon {
@@ -132,31 +182,20 @@ const achievements = [
 }
 
 .text h3 {
-  margin: 0 0 0.4rem;
+  margin: 0.5rem 0;
   font-size: 1.25rem;
   color: #212529;
+  font-weight: 600;
 }
 
 .text p {
-  margin: 0 0 0.4rem;
-  color: #555;
   font-size: 0.95rem;
+  color: #555;
+  margin: 0.3rem 0 0.6rem;
 }
 
 .text small {
   font-size: 0.8rem;
   color: #999;
-}
-
-@media (max-width: 768px) {
-  .achievement-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .text {
-    margin-top: 0.5rem;
-  }
 }
 </style>
