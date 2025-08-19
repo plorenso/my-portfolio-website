@@ -108,9 +108,9 @@ const projects = [
     description:
       'PUP Railway Engineering Management Accreditation Website is a centralized platform designed to support the accreditation process of the Railway Engineering Management program at the Polytechnic University of the Philippines. It streamlines document submission, tracks evaluation progress, and provides easy access to accreditation resources for faculty, assessors, and administrators.',
     image: pupRE,
-    demo: '#',
+    demo: 'https://pupcedept.wixsite.com/re-accredit-lvl3-ph2',
     code: '#',
-    features: ['View PUP BSRE Files', 'View Flipbook Magazines', 'View Certifications'],
+    features: ['View PUP BSREM Files', 'View Flipbook Magazines', 'View Certifications'],
     tag: ['Wix Studio', 'HTML', 'CSS', 'JavaScript', 'Web Design'],
   },
   {

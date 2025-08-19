@@ -73,7 +73,7 @@ const downloadCV = () => {
 
 .container {
   max-width: 1200px;
-  margin-left: 8rem;
+  margin: 0 auto;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -196,6 +196,11 @@ const downloadCV = () => {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .container {
+    margin: 0; /* remove extra left margin */
+    justify-content: flex-start; /* align items to the left */
+    gap: 1rem; /* keep spacing between hamburger & logo */
+  }
   .hamburger {
     display: block;
   }
