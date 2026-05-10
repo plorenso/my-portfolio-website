@@ -231,7 +231,7 @@ import angelsBurgerPOS from '@/assets/images/angels-burger-pos.png'
 import pawSome from '@/assets/images/PAWsome.png'
 import pupLearn from '@/assets/images/PUPLearn+.png'
 import pupRE from '@/assets/images/PUP-RE-website.png'
-import tourEZ from '@/assets/images/tourEZ.png'
+import tourEZ from '@/assets/images/TourEZ.png'
 
 const projects = [
   {
