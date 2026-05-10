@@ -1,44 +1,70 @@
 <template>
-  <section class="stats">
-    <div class="stat" v-for="(item, index) in stats" :key="index">
-      <component :is="item.icon" class="icon" />
-      <h1>{{ animatedValues[index] }}</h1>
-      <p>{{ item.label }}</p>
+  <section
+    class="relative transition-colors duration-300 border-y"
+    :class="isDark ? 'bg-[#0d0d14] border-white/5' : 'bg-white border-black/5'"
+  >
+    <!-- Top Accent Line -->
+    <div
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-px bg-gradient-to-r from-transparent via-green-400/50 to-transparent"
+    />
+
+    <div class="max-w-6xl mx-auto px-6 py-14">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          v-for="(item, index) in stats"
+          :key="index"
+          class="group rounded-2xl px-5 py-7 text-center transition-all duration-300 border"
+          :class="
+            isDark
+              ? 'bg-white/[0.02] border-white/5 hover:bg-white/[0.04] hover:border-green-500/20'
+              : 'bg-black/[0.015] border-black/5 hover:bg-green-50/70 hover:border-green-300/40'
+          "
+        >
+          <!-- Number -->
+          <div
+            class="text-4xl sm:text-5xl font-bold tracking-tight leading-none text-green-500"
+            style="font-family: 'Syne', sans-serif"
+          >
+            {{ animatedValues[index] }}+
+          </div>
+
+          <!-- Label -->
+          <p
+            class="mt-3 text-sm font-medium transition-colors duration-300"
+            :class="isDark ? 'text-white/40' : 'text-black/45'"
+            style="font-family: 'Syne', sans-serif"
+          >
+            {{ item.label }}
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
-// import { Trophy, Users, CalendarDays, Laptop2 } from 'lucide-vue-next'
+import { useTheme } from '@/composables/useTheme'
 
-// const stats = [
-//   { icon: Trophy, value: 10, label: 'Achievements' },
-//   { icon: Users, value: 0, label: 'Clients' },
-//   { icon: CalendarDays, value: 0, label: 'Years Experience' },
-//   { icon: Laptop2, value: 10, label: 'Projects' },
-// ]
+const { isDark } = useTheme()
 
 const stats = [
-  { value: 10, label: 'Achievements' },
-  { value: 0, label: 'Clients' },
-  { value: 0, label: 'Years Experience' },
+  { value: 12, label: 'Achievements' },
+  { value: 5, label: 'Clients' },
+  { value: 1, label: 'Year Experience' },
   { value: 10, label: 'Projects' },
 ]
 
 const animatedValues = ref(stats.map(() => 0))
 
-const animateCount = (index, target, duration = 1000) => {
+const animateCount = (index, target, duration = 1200) => {
   const frameRate = 30
   const totalFrames = Math.round(duration / frameRate)
   let frame = 0
-
   const counter = setInterval(() => {
     frame++
-    const progress = frame / totalFrames
-    animatedValues.value[index] = Math.round(target * progress)
-
-    if (frame === totalFrames) {
+    animatedValues.value[index] = Math.round(target * Math.min(frame / totalFrames, 1))
+    if (frame >= totalFrames) {
       animatedValues.value[index] = target
       clearInterval(counter)
     }
@@ -46,52 +72,6 @@ const animateCount = (index, target, duration = 1000) => {
 }
 
 onMounted(() => {
-  stats.forEach((item, index) => {
-    animateCount(index, item.value)
-  })
+  stats.forEach((item, index) => setTimeout(() => animateCount(index, item.value), index * 150))
 })
 </script>
-
-<style scoped>
-.stats {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 5rem;
-  padding: 2rem 1rem;
-  background-color: #f5f5f5;
-  text-align: center;
-}
-
-.stat {
-  flex: 0 1 150px;
-  max-width: 160px;
-  padding: 0.5rem 0.75rem;
-  transition: transform 0.3s;
-}
-
-.stat:hover {
-  transform: translateY(-5px);
-}
-
-.icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #4caf50;
-}
-
-.stat h1 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #4caf50;
-  margin: 0;
-}
-
-.stat p {
-  font-size: 1.1rem;
-  color: #333;
-  margin-top: 0.3rem;
-}
-</style>

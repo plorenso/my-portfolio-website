@@ -1,26 +1,85 @@
 <template>
-  <section class="achievements" id="achievements">
-    <h4>ACCOMPLISHMENTS</h4>
-    <h1>My <span class="highlight">Achievements</span></h1>
-    <p class="description">
-      A collection of personal achievements that reflect my journey, growth, and dedication to tech.
-    </p>
+  <section
+    id="achievements"
+    class="relative py-24 overflow-hidden transition-colors duration-300"
+    :class="isDark ? 'bg-[#0a0a0f]' : 'bg-[#f8faf9]'"
+  >
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none transition-opacity duration-300"
+      :class="isDark ? 'opacity-[0.06]' : 'opacity-[0.12]'"
+      style="background: radial-gradient(circle, #22c55e, transparent 70%)"
+    />
 
-    <div class="achievement-list">
-      <div
-        class="achievement-card"
-        v-for="(achievement, index) in achievements"
-        :key="index"
-        data-aos="fade-up"
-        :data-aos-delay="index * 100"
-      >
-        <div class="icon">
-          <component :is="achievement.icon" class="lucide-icon" />
-        </div>
-        <div class="text">
-          <h3>{{ achievement.title }}</h3>
-          <p>{{ achievement.description }}</p>
-          <small>{{ achievement.date }}</small>
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <span
+          class="inline-block text-xs font-medium tracking-[0.25em] text-green-500 uppercase mb-4"
+          style="font-family: 'DM Sans', sans-serif"
+        >
+          Accomplishments
+        </span>
+
+        <h2
+          class="text-4xl sm:text-5xl font-bold tracking-tight leading-none transition-colors duration-300"
+          :class="isDark ? 'text-white' : 'text-[#0a0a0f]'"
+          style="font-family: 'Syne', sans-serif"
+        >
+          Learning Milestones
+        </h2>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div
+          v-for="(achievement, index) in achievements"
+          :key="index"
+          class="group relative flex flex-col gap-4 p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1"
+          :class="
+            isDark
+              ? 'border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-green-500/20'
+              : 'border-black/5 bg-white hover:bg-green-50/60 hover:border-green-300/40 shadow-sm hover:shadow-md shadow-black/5'
+          "
+        >
+          <div class="flex items-start justify-between">
+            <div
+              class="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center flex-shrink-0"
+            >
+              <component :is="achievement.icon" class="w-5 h-5 text-green-500" />
+            </div>
+            <span
+              class="text-xs font-mono px-2 py-1 rounded-lg border transition-colors duration-300"
+              :class="
+                isDark
+                  ? 'text-white/25 bg-white/5 border-white/5'
+                  : 'text-black/30 bg-black/[0.03] border-black/5'
+              "
+            >
+              {{ achievement.date }}
+            </span>
+          </div>
+
+          <div>
+            <h3
+              class="text-sm font-bold mb-1.5 leading-snug transition-colors duration-300"
+              :class="isDark ? 'text-white' : 'text-[#0a0a0f]'"
+              style="font-family: 'Syne', sans-serif"
+            >
+              {{ achievement.title }}
+            </h3>
+            <p
+              class="text-xs leading-relaxed transition-colors duration-300"
+              :class="isDark ? 'text-white/40' : 'text-black/50'"
+              style="font-family: 'DM Sans', sans-serif"
+            >
+              {{ achievement.description }}
+            </p>
+          </div>
+
+          <!-- Hover accent line -->
+          <div
+            class="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-green-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          />
         </div>
       </div>
     </div>
@@ -28,174 +87,90 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-
+import { useTheme } from '@/composables/useTheme'
 import { Award, FileCode2, MonitorCog, Code, PenTool, Headset, SquareCode } from 'lucide-vue-next'
 
-onMounted(() => {
-  AOS.init({ duration: 800, once: true })
-})
+const { isDark } = useTheme()
 
 const achievements = [
   {
     icon: Award,
-    title: 'Academic Excellence',
-    description: 'Consistent President Lister',
-    date: '2022-2025',
+    title: 'Diploma in Information Technology',
+    description:
+      'Graduated with Academic Excellence and consistently recognized as a President Lister throughout my Diploma in Information Technology journey.',
+    date: '2022 – 2025',
   },
+
   {
     icon: FileCode2,
     title: 'Programming JAVA NC III',
     description:
-      'Completed 40 days Programming JAVA NC III TESDA training passed the Institutional assessment.',
+      'Completed a 40-day TESDA training program and successfully passed the Institutional Assessment.',
     date: 'June 2023',
   },
+
   {
     icon: MonitorCog,
-    title: 'Computer Systems Servicing NC II Holder',
+    title: 'Computer Systems Servicing NC II',
     description:
-      'Completed 40 days Computer System Servicing TESDA training and passed the National assessment.',
+      'Completed a 40-day TESDA training program and successfully passed the National Assessment.',
     date: 'January 2024',
   },
+
   {
     icon: Code,
     title: 'Full-Stack Developer Intern',
     description:
-      'Completed 300 hours of practical training as a Full-Stack Developer Intern, contributing to real-world projects involving both frontend and backend technologies.',
-    date: 'February 2024',
+      'Completed 300 hours of internship experience contributing to real-world frontend and backend development projects.',
+    date: 'July 2024 – September 2024',
   },
+
   {
     icon: PenTool,
-    title: 'Visual Graphic Design NC III Holder',
+    title: 'Visual Graphic Design NC III',
     description:
-      'Completed 66 days Visual Graphic Design TESDA training and passed the National assessment.',
+      'Completed a 66-day TESDA training program and successfully passed the National Assessment.',
     date: 'December 2024',
   },
+
   {
     icon: Headset,
-    title: 'Contact Center Service NC II',
+    title: 'Contact Center Services NC II',
     description:
-      'Completed 28 days Contact Center Servicing TESDA training and passed the Institutional assessment.',
+      'Completed a 28-day TESDA training program and successfully passed the Institutional Assessment.',
     date: 'February 2024',
   },
+
   {
     icon: Code,
-    title: 'System Automations and Web Developer Intern',
+    title: 'System Automations & Web Development Intern',
     description:
-      'Completed 300 hours of practical training as a System Automations and Web Developer Intern, contributing to real-world projects using Go HighLevel (GHL) for building automations, funnels, and websites.',
-    date: 'February 2024',
+      'Completed 300 hours of internship experience using GoHighLevel (GHL) for system automations, funnels, and website development.',
+    date: 'March 2025 – May 2025',
   },
+
+  {
+    icon: SquareCode,
+    title: 'Web Developer – AACCUP Accreditation',
+    description:
+      'Contributed as part of the development team for the PUP Railway Engineering Management Program accreditation website.',
+    date: 'July 2025',
+  },
+
   {
     icon: Award,
     title: 'Capstone Project Excellence',
     description:
-      'PUP recognized the system to be part of their extension project 2026, for implementation in a partnered beneficiary community, enhancing the delivery of barangay services.',
+      'PUP recognized the system to be part of their extension project 2026, for implementation in apartnered beneficiary community, enhancing the delivery of barangay services.',
     date: 'July 2025',
   },
+
   {
-    icon: SquareCode,
-    title: 'Web Developer',
+    icon: Award,
+    title: 'Junior Web Developer',
     description:
-      'Part of the team for AACCUP Accreditation of PUP College of Engineering, Railway Engineering Management Program',
-    date: 'July 2025',
+      'Worked as a Junior Web Developer focused on frontend development, UI/UX enhancements, and building modern web solutions for real-world projects.',
+    date: 'September 2025 - May 2026',
   },
 ]
 </script>
-
-<style scoped>
-.achievements {
-  padding: 4rem 2rem;
-  background-color: #ffffff;
-  text-align: center;
-}
-
-.achievements h4 {
-  font-weight: 500;
-  color: #b4b2c5;
-  letter-spacing: 2px;
-  margin-bottom: 0.5rem;
-}
-
-.achievements h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #212529;
-  margin-bottom: 1rem;
-}
-
-.highlight {
-  font-weight: 700;
-  color: #4caf50;
-}
-
-.description {
-  max-width: 700px;
-  margin: 0 auto 2.5rem;
-  color: #555;
-  font-size: 1rem;
-}
-
-.achievement-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.achievement-card {
-  background: #ffffff;
-  border-radius: 15px;
-  padding: 2rem 1.5rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e0e0e0;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.achievement-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.icon {
-  background: #e8f5e9;
-  padding: 1rem;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lucide-icon {
-  width: 36px;
-  height: 36px;
-  color: #4caf50;
-}
-
-.text h3 {
-  margin: 0.5rem 0;
-  font-size: 1.25rem;
-  color: #212529;
-  font-weight: 600;
-}
-
-.text p {
-  font-size: 0.95rem;
-  color: #555;
-  margin: 0.3rem 0 0.6rem;
-}
-
-.text small {
-  font-size: 0.8rem;
-  color: #999;
-}
-</style>
