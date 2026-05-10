@@ -213,7 +213,7 @@
           class="text-xs font-mono transition-colors duration-300"
           :class="isDark ? 'text-white/20' : 'text-black/30'"
         >
-          © 2025 Florence Chavez. All rights reserved.
+          © 2025 Mark Florence Chavez. All rights reserved.
         </p>
 
         <div class="flex gap-6">
